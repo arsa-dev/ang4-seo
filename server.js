@@ -14,6 +14,7 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require(`./dist-server/mai
  
 const app = express();
 const port = process.env.port || 8000;
+const path = 'dist/';
 const baseUrl = `http://localhost:${port}`;
  
 // Set the engine
@@ -26,8 +27,8 @@ app.engine('html', ngExpressEngine({
  
 app.set('view engine', 'html');
  
-app.set('views', './');
-app.use('/', express.static('./', {index: false}));
+app.set('views', './'+path);
+app.use('/', express.static('./'+path, {index: false}));
  
 app.get('*', (req, res) => {
   res.render('index', {
